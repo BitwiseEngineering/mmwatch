@@ -37,6 +37,11 @@ class IcsTest(unittest.TestCase):
         self.assertIn("DTSTART;TZID=America/Chicago:20260923T090000", out)
         self.assertIn("BEGIN:VTIMEZONE", out)
 
+    def test_declares_a_refresh_interval(self):
+        """RFC 7986 REFRESH-INTERVAL beside the legacy X-PUBLISHED-TTL, so a
+        subscribed client knows to poll rather than treat the feed as static."""
+        self.assertIn("REFRESH-INTERVAL;VALUE=DURATION:PT12H", self.render())
+
     def test_no_line_exceeds_75_octets(self):
         long_topics = ["A considerably overlong agenda item about the "
                        "reconstruction of the wastewater treatment facility "

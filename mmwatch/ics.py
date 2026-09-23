@@ -124,6 +124,9 @@ def render(meetings, stamp=None):
         "X-WR-CALNAME:MMWatch - Marinette & Menominee public meetings",
         f"X-WR-TIMEZONE:{TZID}",
         "X-PUBLISHED-TTL:PT12H",
+        # RFC 7986 twin of the X- property above: tells a subscribed client
+        # how often to re-fetch rather than treating the feed as static.
+        "REFRESH-INTERVAL;VALUE=DURATION:PT12H",
         *VTIMEZONE.split("\n"),
     ]
     for meeting in sorted(meetings, key=lambda m: (m.start, m.jurisdiction, m.body)):

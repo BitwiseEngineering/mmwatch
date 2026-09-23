@@ -5,21 +5,48 @@
 <p class="lede">Pick whichever fits how you already keep track of things. All of
    them carry the same listings.</p>
 
-<section class="channel">
+{# Never link calendar.ics directly: browsers DOWNLOAD it, and an imported copy
+   is a snapshot that never updates while its owner believes they subscribed.
+   Seen on Android/Brave 2026-09-23. Every action here subscribes instead.
+   Do not claim a button or a sync works on a phone unless someone has seen it. #}
+{% set ics_q = "https%3A%2F%2Fmmwatch.org%2Fcalendar.ics" %}
+<section class="channel" id="calendar">
   <h2>Calendar subscription <span class="tag good">Works now</span></h2>
   <p>The most useful option: meetings appear in the calendar you already use, and
      update themselves as new notices are published.</p>
-  <p><a class="btn" href="/calendar.ics">Add the calendar</a></p>
+  <p class="note"><strong>On an Android phone?</strong> The Google Calendar app
+     cannot subscribe to a calendar by address, and opening the feed on the phone
+     only downloads a file that will never update. Add it once from a computer
+     instead — calendar.google.com → Other calendars → <em>+</em> →
+     <em>From URL</em> → paste the address below. It should reach the phone
+     within a few hours; if it does not, open the Google Calendar app →
+     Settings → <em>MMWatch</em> and switch <em>Sync</em> on.</p>
+  <p class="cta">
+    <a class="btn" href="https://calendar.google.com/calendar/render?cid={{ ics_q }}">Google Calendar</a>
+    <a class="btn" href="webcal://mmwatch.org/calendar.ics">Apple Calendar</a>
+    <a class="btn" href="https://outlook.live.com/calendar/0/addfromweb?url={{ ics_q }}&amp;name=MMWatch">Outlook.com</a>
+    <a class="btn ghost" href="https://outlook.office.com/calendar/0/addfromweb?url={{ ics_q }}&amp;name=MMWatch">Outlook (work or school)</a>
+  </p>
+  <p>Each button is a shortcut into that service's add-a-calendar step; sign in
+     first if you are not already. For any other calendar app, subscribe to this
+     address. It is a live feed, not a file to download:</p>
+  <p><input class="addr" type="text" readonly value="https://mmwatch.org/calendar.ics"
+            aria-label="Calendar subscription address"></p>
   <details>
-    <summary>How to add it</summary>
+    <summary>Step by step for each app</summary>
     <ul>
-      <li><strong>Google Calendar</strong> — Other calendars → <em>From URL</em> →
-          paste <code>https://mmwatch.org/calendar.ics</code></li>
-      <li><strong>Apple Calendar</strong> — File → <em>New Calendar Subscription</em></li>
-      <li><strong>Outlook</strong> — Add calendar → <em>Subscribe from web</em></li>
+      <li><strong>Google Calendar</strong> — Other calendars → <em>+</em> →
+          <em>From URL</em> → paste the address.</li>
+      <li><strong>iPhone and Mac</strong> — the Apple button opens a subscription
+          prompt. By hand: Calendar → File → <em>New Calendar Subscription</em> →
+          paste the address.</li>
+      <li><strong>Outlook</strong> — Add calendar → <em>Subscribe from web</em> →
+          paste the address. The Outlook phone app picks it up from there.</li>
     </ul>
-    <p class="muted">Subscribe to the URL rather than downloading the file, or it
-       will never update.</p>
+    <p class="muted">Do not download the <code>.ics</code> file. A downloaded copy
+       is a snapshot: it will never show a meeting posted after the day you saved
+       it. Subscribing to the address gives you the live feed, which refreshes
+       itself.</p>
   </details>
 </section>
 

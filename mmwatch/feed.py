@@ -48,7 +48,7 @@ def _meeting_html(meeting):
             f'<p><a href="{html.escape(meeting.source_url)}">Source listing</a></p>')
     parts.append(
         f'<p><a href="{SITE}/meetings.html">All upcoming meetings</a> · '
-        f'<a href="{SITE}/calendar.ics">Subscribe in your calendar</a></p>')
+        f'<a href="{SITE}/subscribe.html#calendar">Subscribe in your calendar</a></p>')
     return "".join(parts)
 
 

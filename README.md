@@ -17,6 +17,15 @@ hosting bill, and no subscriber data stored in this repo.
 | `meetings.json` | The whole dataset, open for reuse |
 | `blog/` | Posts from `content/posts/*.md` |
 
+Nothing on the site links `calendar.ics` directly. A bare link makes browsers
+*download* the file, and an imported copy is a frozen snapshot that never updates
+while its owner believes they subscribed (seen on Android, 2026-09-23). Link
+`/subscribe.html#calendar` instead, which offers per-app subscribe actions.
+`tests/test_subscribe_links.py` renders the site and fails on any `<a>` in a
+page, or in the RSS item HTML, whose href is the file; it inspects nothing else.
+The one allowed reference is the `<link rel="alternate" type="text/calendar">`
+discovery tag in `<head>`.
+
 ## How it works
 
 ```

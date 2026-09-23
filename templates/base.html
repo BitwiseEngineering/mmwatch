@@ -6,6 +6,7 @@
 <title>{% block title %}MMWatch{% endblock %}</title>
 <meta name="description" content="{% block description %}Public meetings, agendas and documents for Marinette, Wisconsin and Menominee, Michigan.{% endblock %}">
 <link rel="alternate" type="application/rss+xml" title="MMWatch meetings" href="/feed.xml">
+<link rel="alternate" type="text/calendar" title="MMWatch meetings (calendar)" href="/calendar.ics">
 <link rel="stylesheet" href="/style.css">
 </head>
 <body>
@@ -34,7 +35,7 @@
        agendas. <strong>Always confirm date, time and place with the clerk before
        attending</strong> — notices get corrected, and meetings get cancelled.</p>
     <p class="muted">Built {{ built_human }} ·
-       <a href="/calendar.ics">Calendar</a> ·
+       <a href="/subscribe.html#calendar">Calendar</a> ·
        <a href="/feed.xml">RSS</a> ·
        <a href="/meetings.json">Data (JSON)</a></p>
   </div>
