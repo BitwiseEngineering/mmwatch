@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% from "_meeting.html" import card %}
+{% block title %}Upcoming meetings — MMWatch{% endblock %}
+{% block content %}
+<h1>Meetings</h1>
+<p class="lede">Every public meeting we currently know about, soonest first.
+   <a href="/calendar.ics">Subscribe to the calendar</a> to get these automatically.</p>
+
+<h2>Upcoming</h2>
+{% if upcoming %}
+  {% for m in upcoming %}{{ card(m, show_year=True) }}{% endfor %}
+{% else %}
+  <p class="empty">Nothing upcoming is currently listed.</p>
+{% endif %}
+
+{% if past %}
+<h2>Recently held</h2>
+<p class="muted">Kept so you can find the agenda for a meeting that already happened.</p>
+{% for m in past %}{{ card(m, show_year=True) }}{% endfor %}
+{% endif %}
+{% endblock %}

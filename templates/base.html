@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}MMWatch{% endblock %}</title>
+<meta name="description" content="{% block description %}Public meetings, agendas and documents for Marinette, Wisconsin and Menominee, Michigan.{% endblock %}">
+<link rel="alternate" type="application/rss+xml" title="MMWatch meetings" href="/feed.xml">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="/"><strong>MM</strong>Watch</a>
+    <nav>
+      <a href="/meetings.html">Meetings</a>
+      <a href="/documents.html">Documents</a>
+      <a href="/blog/">Blog</a>
+      <a href="/subscribe.html">Subscribe</a>
+      <a href="/about.html">About</a>
+    </nav>
+  </div>
+</header>
+<main id="main" class="wrap">
+{% block content %}{% endblock %}
+</main>
+<footer class="site">
+  <div class="wrap">
+    <p><strong>MMWatch</strong> — an independent civic transparency project covering
+       Marinette County &amp; the City of Marinette, Wisconsin, and Menominee County
+       &amp; the City of Menominee, Michigan.</p>
+    <p>Meeting listings are compiled automatically from public notices and posted
+       agendas. <strong>Always confirm date, time and place with the clerk before
+       attending</strong> — notices get corrected, and meetings get cancelled.</p>
+    <p class="muted">Built {{ built_human }} ·
+       <a href="/calendar.ics">Calendar</a> ·
+       <a href="/feed.xml">RSS</a> ·
+       <a href="/meetings.json">Data (JSON)</a></p>
+  </div>
+</footer>
+</body>
+</html>

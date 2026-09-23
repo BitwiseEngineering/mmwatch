@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}{{ post.title }} — MMWatch{% endblock %}
+{% block description %}{{ post.summary or post.title }}{% endblock %}
+{% block content %}
+<article class="post">
+  <h1>{{ post.title }}</h1>
+  <p class="meta">{{ post.date.strftime('%B %-d, %Y') }}</p>
+  {{ post.html }}
+</article>
+<p><a href="/blog/">← All posts</a></p>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Get notified — MMWatch{% endblock %}
+{% block content %}
+<h1>Get notified</h1>
+<p class="lede">Pick whichever fits how you already keep track of things. All of
+   them carry the same listings.</p>
+
+<section class="channel">
+  <h2>Calendar subscription <span class="tag good">Works now</span></h2>
+  <p>The most useful option: meetings appear in the calendar you already use, and
+     update themselves as new notices are published.</p>
+  <p><a class="btn" href="/calendar.ics">Add the calendar</a></p>
+  <details>
+    <summary>How to add it</summary>
+    <ul>
+      <li><strong>Google Calendar</strong> — Other calendars → <em>From URL</em> →
+          paste <code>https://mmwatch.org/calendar.ics</code></li>
+      <li><strong>Apple Calendar</strong> — File → <em>New Calendar Subscription</em></li>
+      <li><strong>Outlook</strong> — Add calendar → <em>Subscribe from web</em></li>
+    </ul>
+    <p class="muted">Subscribe to the URL rather than downloading the file, or it
+       will never update.</p>
+  </details>
+</section>
+
+<section class="channel">
+  <h2>Email newsletter</h2>
+  <p>A regular digest of what is coming up.</p>
+  {% if mailchimp_action %}
+  <form action="{{ mailchimp_action }}" method="post" target="_blank" novalidate class="signup">
+    <label for="mce-EMAIL">Email address</label>
+    <input type="email" name="EMAIL" id="mce-EMAIL" required placeholder="you@example.com">
+    <div class="hp" aria-hidden="true">
+      <input type="text" name="{{ mailchimp_honeypot }}" tabindex="-1" value="">
+    </div>
+    <button type="submit" name="subscribe">Subscribe</button>
+  </form>
+  {% else %}
+  <p class="pending">The signup form is not wired up yet. Until it is, the
+     <a href="/feed.xml">RSS feed</a> and the calendar carry everything.</p>
+  {% endif %}
+</section>
+
+<section class="channel">
+  <h2>Text messages <span class="tag pending">Coming soon</span></h2>
+  <p>SMS alerts for meetings that matter most — budget hearings, votes with public
+     comment periods. We are completing carrier registration, which takes a few
+     weeks; the form will appear here when it is live.</p>
+</section>
+
+<section class="channel">
+  <h2>RSS <span class="tag good">Works now</span></h2>
+  <p>For reporters and anyone running their own reader or automation.</p>
+  <p><code>https://mmwatch.org/feed.xml</code></p>
+</section>
+
+<section class="channel">
+  <h2>What we do with your details</h2>
+  <p>Nothing beyond sending you what you asked for. The calendar and RSS options
+     require no signup at all and tell us nothing about you. Email and SMS are
+     handled by our mailing provider; you can unsubscribe from any message.</p>
+</section>
+{% endblock %}

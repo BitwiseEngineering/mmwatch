@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% from "_meeting.html" import card %}
+{% block title %}MMWatch — Marinette &amp; Menominee public meetings{% endblock %}
+{% block content %}
+<section class="hero">
+  <h1>What your local government is deciding this week.</h1>
+  <p class="lede">MMWatch tracks every public meeting, agenda and document across
+     Marinette, Wisconsin and Menominee, Michigan — and tells you before the vote,
+     not after.</p>
+  <p class="cta">
+    <a class="btn" href="/subscribe.html">Get notified</a>
+    <a class="btn ghost" href="/calendar.ics">Add to your calendar</a>
+  </p>
+</section>
+
+<section>
+  <h2>Next {{ soon|length }} meeting{{ '' if soon|length == 1 else 's' }}</h2>
+  {% if soon %}
+    {% for m in soon %}{{ card(m) }}{% endfor %}
+    <p><a href="/meetings.html">See all {{ total_upcoming }} upcoming meetings →</a></p>
+  {% else %}
+    <p class="empty">No upcoming meetings are currently listed. This usually means
+       no new public notice has been published yet — it does not mean nothing is
+       scheduled. Check the <a href="/meetings.html">full listing</a>.</p>
+  {% endif %}
+</section>
+
+{% if posts %}
+<section>
+  <h2>Latest from the blog</h2>
+  {% for p in posts[:3] %}
+  <article class="post-teaser">
+    <h3><a href="/blog/{{ p.slug }}.html">{{ p.title }}</a></h3>
+    <p class="meta">{{ p.date.strftime('%B %-d, %Y') }}</p>
+    {% if p.summary %}<p>{{ p.summary }}</p>{% endif %}
+  </article>
+  {% endfor %}
+</section>
+{% endif %}
+
+<section class="how">
+  <h2>How this works</h2>
+  <div class="cols">
+    <div><h3>Automated, not editorial</h3>
+      <p>Listings are compiled by a program that reads public notices and posted
+         agendas every day. No one decides what is newsworthy enough to include.</p></div>
+    <div><h3>Sources are always linked</h3>
+      <p>Every listing links to the notice it came from, so you can check the
+         original rather than take our word for it.</p></div>
+    <div><h3>Open data</h3>
+      <p>The whole meeting dataset is <a href="/meetings.json">public JSON</a>.
+         Reuse it, check it, or build on it.</p></div>
+  </div>
+</section>
+{% endblock %}

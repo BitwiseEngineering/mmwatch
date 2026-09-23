@@ -1,0 +1,21 @@
+{% macro card(m, show_year=False) %}
+<article class="meeting{% if m.cancelled %} cancelled{% endif %}" id="{{ m.uid }}">
+  <div class="when">
+    <span class="dow">{{ m.start.strftime('%a') }}</span>
+    <span class="day">{{ m.start.strftime('%-d') }}</span>
+    <span class="mon">{{ m.start.strftime('%b') }}{% if show_year %} {{ m.start.strftime('%Y') }}{% endif %}</span>
+  </div>
+  <div class="what">
+    <p class="juris">{{ m.jurisdiction }}</p>
+    <h3>{{ m.body }}{% if m.cancelled %} <span class="tag">Cancelled</span>{% endif %}</h3>
+    <p class="meta">{{ m.start.strftime('%-I:%M %p') }}{% if m.location %} · {{ m.location }}{% endif %}</p>
+    {% if m.topics %}
+    <details>
+      <summary>{{ m.topics|length }} item{{ '' if m.topics|length == 1 else 's' }} on the agenda</summary>
+      <ul>{% for t in m.topics %}<li>{{ t }}</li>{% endfor %}</ul>
+    </details>
+    {% endif %}
+    {% if m.source_url %}<p class="src"><a href="{{ m.source_url }}">Source notice</a></p>{% endif %}
+  </div>
+</article>
+{% endmacro %}

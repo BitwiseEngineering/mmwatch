@@ -1,0 +1,73 @@
+name: build-and-deploy
+
+on:
+  schedule:
+    - cron: "41 12 * * *"   # daily ~07:41 America/Chicago; after civic-watch's run
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+
+permissions:
+  contents: write       # commit the refreshed data/meetings.json
+  pages: write
+  id-token: write
+
+concurrency:
+  group: mmwatch-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Tests
+        run: python -m unittest discover -s tests
+
+      # Reads one PUBLIC MEETINGS digest (see mmwatch/sources.py for why one).
+      # A source outage degrades to a rebuild from stored data rather than an
+      # empty site.
+      - name: Build site
+        env:
+          MMWATCH_MAILCHIMP_ACTION: ${{ secrets.MMWATCH_MAILCHIMP_ACTION }}
+          MMWATCH_MAILCHIMP_HONEYPOT: ${{ secrets.MMWATCH_MAILCHIMP_HONEYPOT }}
+        run: python -m mmwatch.build
+
+      # The meeting store is the site's memory: commit it so history accumulates
+      # and a rebuild is reproducible. Explicit path, never `git add -A`.
+      - name: Commit refreshed data
+        run: |
+          if git diff --quiet -- data/meetings.json; then
+            echo "no new meetings"
+          else
+            git config user.name "mmwatch-bot"
+            git config user.email "mmwatch-bot@users.noreply.github.com"
+            git add -- data/meetings.json
+            git commit -m "data: refresh meeting store ($(date -u +%Y-%m-%d))"
+            git push
+          fi
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

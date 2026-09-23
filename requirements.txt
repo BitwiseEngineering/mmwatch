@@ -1,0 +1,4 @@
+requests
+feedparser
+Jinja2
+Markdown

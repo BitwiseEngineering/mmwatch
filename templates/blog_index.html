@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}Blog — MMWatch{% endblock %}
+{% block content %}
+<h1>Blog</h1>
+<p class="lede">Context, explainers and what we found in the documents.</p>
+{% if posts %}
+  {% for p in posts %}
+  <article class="post-teaser">
+    <h2><a href="/blog/{{ p.slug }}.html">{{ p.title }}</a></h2>
+    <p class="meta">{{ p.date.strftime('%B %-d, %Y') }}</p>
+    {% if p.summary %}<p>{{ p.summary }}</p>{% endif %}
+  </article>
+  {% endfor %}
+{% else %}
+  <p class="empty">No posts yet.</p>
+{% endif %}
+{% endblock %}
