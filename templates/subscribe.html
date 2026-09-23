@@ -7,7 +7,8 @@
 
 {# Never link calendar.ics directly: browsers DOWNLOAD it, and an imported copy
    is a snapshot that never updates while its owner believes they subscribed.
-   Seen on Android/Brave 2026-09-23. Every action here subscribes instead. #}
+   Seen on Android/Brave 2026-09-23. Every action here subscribes instead.
+   Do not claim a button works on a phone unless someone has tapped it there. #}
 {% set ics_q = "https%3A%2F%2Fmmwatch.org%2Fcalendar.ics" %}
 <section class="channel" id="calendar">
   <h2>Calendar subscription <span class="tag good">Works now</span></h2>
@@ -19,31 +20,32 @@
     <a class="btn" href="https://outlook.live.com/calendar/0/addfromweb?url={{ ics_q }}&amp;name=MMWatch">Outlook.com</a>
     <a class="btn ghost" href="https://outlook.office.com/calendar/0/addfromweb?url={{ ics_q }}&amp;name=MMWatch">Outlook (work or school)</a>
   </p>
-  <p>Any other calendar app: subscribe to this address. It is a live feed, not a
-     file to download.</p>
-  <p><code>https://mmwatch.org/calendar.ics</code></p>
+  <p>Each button is a shortcut into that service's add-a-calendar step; sign in
+     first if you are not already. For any other calendar app, subscribe to this
+     address. It is a live feed, not a file to download:</p>
+  <p><input class="addr" type="text" readonly value="https://mmwatch.org/calendar.ics"
+            aria-label="Calendar subscription address"></p>
+  <p class="note"><strong>On an Android phone?</strong> The Google Calendar app
+     cannot subscribe to a calendar by address, and opening the feed on the phone
+     only downloads a file that will never update. Add it once from a computer
+     instead — calendar.google.com → Other calendars → <em>+</em> →
+     <em>From URL</em> → paste the address above — and it appears in the phone
+     app after its next sync.</p>
   <details>
-    <summary>Step by step, including Android</summary>
+    <summary>Step by step for each app</summary>
     <ul>
-      <li><strong>Google Calendar</strong> — the button opens calendar.google.com
-          and asks whether to add the calendar. By hand: Other calendars →
-          <em>+</em> → <em>From URL</em> → paste the address.</li>
-      <li><strong>Android phones</strong> — the Google Calendar <em>app</em> cannot
-          subscribe to a calendar by address; opening the feed on the phone only
-          downloads a file that will never update. Subscribe once from
-          calendar.google.com in the browser (the Google button above works on
-          the phone), and the calendar appears in the app after its next sync.</li>
+      <li><strong>Google Calendar</strong> — Other calendars → <em>+</em> →
+          <em>From URL</em> → paste the address.</li>
       <li><strong>iPhone and Mac</strong> — the Apple button opens a subscription
           prompt. By hand: Calendar → File → <em>New Calendar Subscription</em> →
           paste the address.</li>
-      <li><strong>Outlook</strong> — the button opens Outlook on the web at
-          <em>Add calendar → Subscribe from web</em> with the address filled in;
-          the Outlook phone app picks it up from there.</li>
+      <li><strong>Outlook</strong> — Add calendar → <em>Subscribe from web</em> →
+          paste the address. The Outlook phone app picks it up from there.</li>
     </ul>
     <p class="muted">Do not download the <code>.ics</code> file. A downloaded copy
        is a snapshot: it will never show a meeting posted after the day you saved
-       it. The buttons and the address above subscribe to the live feed, which
-       refreshes itself.</p>
+       it. Subscribing to the address gives you the live feed, which refreshes
+       itself.</p>
   </details>
 </section>
 

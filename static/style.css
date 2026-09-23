@@ -153,6 +153,16 @@ h3 { font-size: 1.08rem; margin: 0 0 .3rem; }
 }
 .channel h2 { margin-top: 0; }
 .channel code { background: var(--bg); padding: .15rem .4rem; border-radius: 5px; border: 1px solid var(--line); }
+.channel input.addr {
+  width: 100%; max-width: 30rem; font: inherit; font-size: .95rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  padding: .5rem .65rem; border: 1px solid var(--line); border-radius: 6px;
+  background: var(--bg); color: inherit;
+}
+.channel .note {
+  border-left: 4px solid var(--accent); background: var(--bg);
+  padding: .55rem .8rem; border-radius: 0 6px 6px 0;
+}
 
 .signup { display: flex; flex-wrap: wrap; gap: .6rem; align-items: flex-end; margin-top: .8rem; }
 .signup label { display: block; width: 100%; font-size: .9rem; color: var(--muted); }

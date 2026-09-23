@@ -10,22 +10,51 @@ directly. They link the subscribe page, which offers per-app subscribe actions
 """
 import datetime
 import os
+import re
 import tempfile
 import unittest
 
 from mmwatch import build, feed
+from mmwatch.build import Post
 from mmwatch.digest import Meeting
 
 ICS = "https://mmwatch.org/calendar.ics"
 ICS_ENCODED = "https%3A%2F%2Fmmwatch.org%2Fcalendar.ics"
+NOW = datetime.datetime(2026, 9, 23, 8, 0)
+
+# Any <a> whose href IS the file: absolute or relative, either quote style or
+# none, with a query string or fragment. Not matched, deliberately: the
+# <link rel="alternate"> discovery tag in <head> (no download, and how calendar
+# clients find the feed), webcal:// (hands the address to a calendar app), and
+# the Google/Outlook deep links, whose query strings merely mention the file.
+ICS_ANCHOR = re.compile(
+    r'<a\b[^>]*\bhref=["\']?(?:https?://[^/"\'\s>]*)?(?:\./)?/?calendar\.ics'
+    r'(?:[?#][^"\'\s>]*)?(?=["\'\s>])', re.I)
+DISCOVERY = ('<link rel="alternate" type="text/calendar" '
+             'title="MMWatch meetings" href="/calendar.ics">')
+
+
+def meeting(**kw):
+    kw.setdefault("jurisdiction", "Marinette County")
+    kw.setdefault("body", "Mar-Oco Landfill Committee")
+    kw.setdefault("start", NOW + datetime.timedelta(days=7))
+    kw.setdefault("location", "Marinette County Resource Center, 1925 Ella Ct.")
+    kw.setdefault("topics", ["Solid waste disposal services financial analysis"])
+    kw.setdefault("source_url", "https://www.ehextra.com/records/public-meetings/x.html")
+    return Meeting(**kw)
 
 
 class RenderedSite(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.tmp = tempfile.TemporaryDirectory()
-        build.render_site({}, [], out=cls.tmp.name,
-                          now=datetime.datetime(2026, 9, 23, 8, 0))
+        meetings = {
+            "soon": meeting(),
+            "recent": meeting(body="County Board", start=NOW - datetime.timedelta(days=7)),
+        }
+        posts = [Post(slug="test-post", title="Test post", date=NOW.date(),
+                      summary="A post.", html="<p>Body.</p>")]
+        build.render_site(meetings, posts, out=cls.tmp.name, now=NOW)
 
     @classmethod
     def tearDownClass(cls):
@@ -42,11 +71,27 @@ class RenderedSite(unittest.TestCase):
                     rel = os.path.relpath(os.path.join(root, f), self.tmp.name)
                     yield rel, self.page(rel)
 
+    def test_fixture_renders_a_meeting_card_and_a_post(self):
+        """Guard against the guard: if the fixture rendered an empty site, the
+        per-meeting markup and the post page would never be inspected."""
+        self.assertIn('class="meeting', self.page("index.html"))
+        self.assertIn('class="meeting', self.page("meetings.html"))
+        post = self.page(os.path.join("blog", "test-post.html"))
+        self.assertIn('<article class="post">', post)
+        self.assertIn("<h1>Test post</h1>", post)
+
     def test_no_page_links_the_ics_file_directly(self):
         for name, html in self.pages():
             with self.subTest(page=name):
-                self.assertNotIn('href="/calendar.ics"', html)
-                self.assertNotIn(f'href="{ICS}"', html)
+                hit = ICS_ANCHOR.search(html)
+                self.assertIsNone(hit, hit and hit.group(0))
+
+    def test_every_page_advertises_the_calendar_for_discovery(self):
+        """The one safe reference: a <link rel="alternate"> in <head>, next to
+        the RSS one, so calendar clients and extensions can still find the feed."""
+        for name, html in self.pages():
+            with self.subTest(page=name):
+                self.assertIn(DISCOVERY, html)
 
     def test_front_page_calendar_button_goes_to_the_subscribe_page(self):
         self.assertIn('href="/subscribe.html#calendar">Add to your calendar',
@@ -67,12 +112,23 @@ class RenderedSite(unittest.TestCase):
         html = self.page("subscribe.html")
         self.assertIn("outlook.live.com/calendar/0/addfromweb?url=" + ICS_ENCODED, html)
 
-    def test_subscribe_page_shows_the_url_to_paste(self):
-        self.assertIn(f"<code>{ICS}</code>", self.page("subscribe.html"))
+    def test_subscribe_page_shows_the_url_in_a_readonly_field(self):
+        """A field selects whole on a tap; inline <code> needs a long-press
+        drag across 33 characters on a phone."""
+        html = self.page("subscribe.html")
+        tag = re.search(r'<input\b[^>]*value="%s"[^>]*>' % re.escape(ICS), html)
+        self.assertIsNotNone(tag, "no input carries the address")
+        self.assertIn("readonly", tag.group(0))
 
-    def test_subscribe_page_explains_android(self):
-        """The phone app cannot subscribe by URL; that is where the download came from."""
-        self.assertIn("Android", self.page("subscribe.html"))
+    def test_android_guidance_is_visible_without_expanding_anything(self):
+        """The phone app cannot subscribe by URL; that is where the download
+        came from. The person it happened to must see that without opening a
+        collapsed section -- and the page must not claim the phone button
+        works, because nobody has tested it on a phone."""
+        html = self.page("subscribe.html")
+        self.assertIn("Android", html)
+        self.assertLess(html.index("Android"), html.index("<details>"))
+        self.assertNotIn("works on the phone", html)
 
 
 class FeedLinksTest(unittest.TestCase):
