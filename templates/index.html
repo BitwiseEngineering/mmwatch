@@ -17,7 +17,7 @@
   <h2>Next {{ soon|length }} meeting{{ '' if soon|length == 1 else 's' }}</h2>
   {% if soon %}
     {% for m in soon %}{{ card(m) }}{% endfor %}
-    <p><a href="/meetings.html">See all {{ total_upcoming }} upcoming meetings →</a></p>
+    <p><a href="/meetings.html">See all {{ total_upcoming }} upcoming meeting{{ '' if total_upcoming == 1 else 's' }} →</a></p>
   {% else %}
     <p class="empty">No upcoming meetings are currently listed. This usually means
        no new public notice has been published yet — it does not mean nothing is
