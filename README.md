@@ -37,6 +37,13 @@ EagleHerald "PUBLIC MEETINGS" digest
                        └─ GitHub Pages
 ```
 
+In CI the live copy of `data/meetings.json` is not on `main` -- `main` requires
+pull requests, so the workflow cannot push there (issue #4). `tools/data_branch.sh`
+keeps it on an unprotected `data` branch: `restore` overlays it before the build,
+`persist` pushes it back only when the meetings changed (a moved `generated_at`
+alone is not a change). The copy on `main` is the seed; editing it changes
+nothing once the branch exists, and deleting the branch resets the store to it.
+
 `data/meetings.json` is committed on purpose. It is the site's memory: history
 accumulates across runs, a source going dark degrades to "rebuild from what we
 have" rather than an empty site, and any build is reproducible.

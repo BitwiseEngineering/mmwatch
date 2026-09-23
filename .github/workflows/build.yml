@@ -8,7 +8,7 @@ on:
     branches: [main]
 
 permissions:
-  contents: write       # commit the refreshed data/meetings.json
+  contents: write       # push data/meetings.json to the `data` branch (tools/data_branch.sh)
   pages: write
   id-token: write
 
@@ -34,6 +34,12 @@ jobs:
       - name: Tests
         run: python -m unittest discover -s tests
 
+      # The meeting store is the site's memory. `main` is PR-protected, so the
+      # store lives on the unprotected `data` branch (issue #4): overlay it
+      # before the build, push it back after. The copy on `main` is the seed.
+      - name: Restore meeting store
+        run: tools/data_branch.sh restore
+
       # Reads one PUBLIC MEETINGS digest (see mmwatch/sources.py for why one).
       # A source outage degrades to a rebuild from stored data rather than an
       # empty site.
@@ -43,19 +49,12 @@ jobs:
           MMWATCH_MAILCHIMP_HONEYPOT: ${{ secrets.MMWATCH_MAILCHIMP_HONEYPOT }}
         run: python -m mmwatch.build
 
-      # The meeting store is the site's memory: commit it so history accumulates
-      # and a rebuild is reproducible. Explicit path, never `git add -A`.
-      - name: Commit refreshed data
-        run: |
-          if git diff --quiet -- data/meetings.json; then
-            echo "no new meetings"
-          else
-            git config user.name "mmwatch-bot"
-            git config user.email "mmwatch-bot@users.noreply.github.com"
-            git add -- data/meetings.json
-            git commit -m "data: refresh meeting store ($(date -u +%Y-%m-%d))"
-            git push
-          fi
+      # Quiet days push nothing: persist compares content with generated_at
+      # ignored. A failure here fails the job on purpose -- a store that
+      # silently stops accumulating is worse than one missed deploy, and the
+      # side branch takes the stock GITHUB_TOKEN, so failures are transient.
+      - name: Persist meeting store
+        run: tools/data_branch.sh persist
 
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
