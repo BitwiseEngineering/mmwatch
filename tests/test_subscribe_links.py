@@ -6,7 +6,7 @@ member tapped "Add to your calendar". Someone who imports that file gets a froze
 snapshot that never updates, and believes they are subscribed: the one failure a
 "before the vote, not after" site cannot afford. So no page links the file
 directly. They link the subscribe page, which offers per-app subscribe actions
-(webcal://, Google "add by URL", Outlook "add from web") and the URL to paste.
+(webcal://, Google one-tap via cid=webcal, Outlook "add from web") and the URL to paste.
 """
 import datetime
 import os
@@ -20,6 +20,7 @@ from mmwatch.digest import Meeting
 
 ICS = "https://mmwatch.org/calendar.ics"
 ICS_ENCODED = "https%3A%2F%2Fmmwatch.org%2Fcalendar.ics"
+WEBCAL_ENCODED = "webcal%3A%2F%2Fmmwatch.org%2Fcalendar.ics"
 NOW = datetime.datetime(2026, 9, 23, 8, 0)
 
 # Any <a> whose href IS the file: absolute, protocol-relative or relative
@@ -72,6 +73,7 @@ class GuardRegexTest(unittest.TestCase):
     MUST_NOT = [
         '<a href="webcal://mmwatch.org/calendar.ics">',
         '<a href="https://calendar.google.com/calendar/render?cid=https%3A%2F%2Fmmwatch.org%2Fcalendar.ics">',
+        '<a href="https://calendar.google.com/calendar/render?cid=webcal%3A%2F%2Fmmwatch.org%2Fcalendar.ics">',
         '<a href="https://outlook.live.com/calendar/0/addfromweb?url=https%3A%2F%2Fmmwatch.org%2Fcalendar.ics&amp;name=MMWatch">',
         '<a href="/subscribe.html#calendar">',
         '<link rel="alternate" type="text/calendar" href="/calendar.ics">',
@@ -155,9 +157,26 @@ class RenderedSite(unittest.TestCase):
         self.assertIn('href="webcal://mmwatch.org/calendar.ics"',
                       self.page("subscribe.html"))
 
-    def test_subscribe_page_offers_google_add_by_url(self):
+    def test_subscribe_page_offers_google_one_tap_subscribe(self):
+        """Google's cid= takes the address in webcal:// form. Given https:// it
+        attempts the add and fails ("Unable to add calendar - check the url");
+        both outcomes were verified by hand on 2026-09-23."""
         html = self.page("subscribe.html")
-        self.assertIn("calendar.google.com/calendar/render?cid=" + ICS_ENCODED, html)
+        self.assertIn('href="https://calendar.google.com/calendar/render?cid='
+                      + WEBCAL_ENCODED + '"', html)
+        self.assertNotIn("cid=" + ICS_ENCODED, html)
+
+    def test_googles_failure_and_the_way_around_it_are_visible_together(self):
+        """The button navigates away. Someone Google turned down comes back to
+        this page and must find the by-hand path without expanding anything,
+        in the same paragraph as the exact error they saw."""
+        html = self.page("subscribe.html")
+        self.assertIn("<details", html)
+        visible = html[:html.index("<details")]
+        para = re.search(r"<p\b[^>]*>(?:(?!</p>).)*?Unable to add calendar - check the url"
+                         r"(?:(?!</p>).)*?</p>", visible, re.S)
+        self.assertIsNotNone(para, "the full error text is not in a visible paragraph")
+        self.assertIn("From URL", para.group(0))
 
     def test_subscribe_page_offers_outlook_add_from_web(self):
         html = self.page("subscribe.html")
