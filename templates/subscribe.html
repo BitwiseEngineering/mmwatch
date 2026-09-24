@@ -10,6 +10,10 @@
    Seen on Android/Brave 2026-09-23. Every action here subscribes instead.
    Do not claim a button or a sync works on a phone unless someone has seen it. #}
 {% set ics_q = "https%3A%2F%2Fmmwatch.org%2Fcalendar.ics" %}
+{# Google's cid= wants the address as webcal://. With https:// it opens the
+   calendar, attempts the add and fails ("Unable to add calendar - check the
+   url"). Both verified by hand 2026-09-23; Outlook takes https. #}
+{% set webcal_q = "webcal%3A%2F%2Fmmwatch.org%2Fcalendar.ics" %}
 <section class="channel" id="calendar">
   <h2>Calendar subscription <span class="tag good">Works now</span></h2>
   <p>The most useful option: meetings appear in the calendar you already use, and
@@ -22,7 +26,7 @@
      within a few hours; if it does not, open the Google Calendar app →
      Settings → <em>MMWatch</em> and switch <em>Sync</em> on.</p>
   <p class="cta">
-    <a class="btn" href="https://calendar.google.com/calendar/render?cid={{ ics_q }}">Google Calendar</a>
+    <a class="btn" href="https://calendar.google.com/calendar/render?cid={{ webcal_q }}">Google Calendar</a>
     <a class="btn" href="webcal://mmwatch.org/calendar.ics">Apple Calendar</a>
     <a class="btn" href="https://outlook.live.com/calendar/0/addfromweb?url={{ ics_q }}&amp;name=MMWatch">Outlook.com</a>
     <a class="btn ghost" href="https://outlook.office.com/calendar/0/addfromweb?url={{ ics_q }}&amp;name=MMWatch">Outlook (work or school)</a>
@@ -35,8 +39,10 @@
   <details>
     <summary>Step by step for each app</summary>
     <ul>
-      <li><strong>Google Calendar</strong> — Other calendars → <em>+</em> →
-          <em>From URL</em> → paste the address.</li>
+      <li><strong>Google Calendar</strong> — the button opens Google Calendar and
+          asks whether to add the calendar. If Google answers
+          <em>Unable to add calendar</em>, do it by hand: Other calendars →
+          <em>+</em> → <em>From URL</em> → paste the address.</li>
       <li><strong>iPhone and Mac</strong> — the Apple button opens a subscription
           prompt. By hand: Calendar → File → <em>New Calendar Subscription</em> →
           paste the address.</li>

@@ -20,6 +20,7 @@ from mmwatch.digest import Meeting
 
 ICS = "https://mmwatch.org/calendar.ics"
 ICS_ENCODED = "https%3A%2F%2Fmmwatch.org%2Fcalendar.ics"
+WEBCAL_ENCODED = "webcal%3A%2F%2Fmmwatch.org%2Fcalendar.ics"
 NOW = datetime.datetime(2026, 9, 23, 8, 0)
 
 # Any <a> whose href IS the file: absolute, protocol-relative or relative
@@ -72,6 +73,7 @@ class GuardRegexTest(unittest.TestCase):
     MUST_NOT = [
         '<a href="webcal://mmwatch.org/calendar.ics">',
         '<a href="https://calendar.google.com/calendar/render?cid=https%3A%2F%2Fmmwatch.org%2Fcalendar.ics">',
+        '<a href="https://calendar.google.com/calendar/render?cid=webcal%3A%2F%2Fmmwatch.org%2Fcalendar.ics">',
         '<a href="https://outlook.live.com/calendar/0/addfromweb?url=https%3A%2F%2Fmmwatch.org%2Fcalendar.ics&amp;name=MMWatch">',
         '<a href="/subscribe.html#calendar">',
         '<link rel="alternate" type="text/calendar" href="/calendar.ics">',
@@ -156,8 +158,17 @@ class RenderedSite(unittest.TestCase):
                       self.page("subscribe.html"))
 
     def test_subscribe_page_offers_google_add_by_url(self):
+        """Google's cid= takes the address in webcal:// form. Given https:// it
+        attempts the add and fails ("Unable to add calendar - check the url");
+        both outcomes were verified by hand on 2026-09-23."""
         html = self.page("subscribe.html")
-        self.assertIn("calendar.google.com/calendar/render?cid=" + ICS_ENCODED, html)
+        self.assertIn("calendar.google.com/calendar/render?cid=" + WEBCAL_ENCODED, html)
+        self.assertNotIn("cid=" + ICS_ENCODED, html)
+
+    def test_subscribe_page_names_googles_failure_and_the_way_around_it(self):
+        html = self.page("subscribe.html")
+        self.assertIn("Unable to add calendar", html)
+        self.assertIn("From URL", html)
 
     def test_subscribe_page_offers_outlook_add_from_web(self):
         html = self.page("subscribe.html")
