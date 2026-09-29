@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-27T17:16:18+00:00",
+ "generated_at": "2026-09-29T18:14:25+00:00",
  "meetings": [
   {
    "body": "Board of Supervisors",
@@ -380,6 +380,22 @@
    "uid": "3ddf1c635b058251"
   },
   {
+   "body": "Board of Supervisors",
+   "cancelled": false,
+   "jurisdiction": "Marinette County",
+   "location": "County Board Room No. 112, first floor, Courthouse, 1926 Hall Ave., Marinette",
+   "source_date": "2026-09-27",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_54f36601-10ba-4a9e-a1bc-a3786682928e.html",
+   "start": "2026-09-29T09:00:00",
+   "topics": [
+    "Administrator\u2019s report, including 2026 county budget message",
+    "Reports from department heads and supervisors",
+    "Appointments",
+    "Lease agreement for Stephenson Public Library Building with the City of Marinette, subject to Corporation Counsel\u2019s approval"
+   ],
+   "uid": "6d307e2544efff6c"
+  },
+  {
    "body": "Historic District Commission",
    "cancelled": false,
    "jurisdiction": "City of Menominee",
@@ -392,6 +408,50 @@
     "House of Dreams window shade"
    ],
    "uid": "5e77f597945e9ae6"
+  },
+  {
+   "body": "Board of Commissioners",
+   "cancelled": false,
+   "jurisdiction": "Menominee County",
+   "location": "Courthouse, 839 10th Ave., Menominee",
+   "source_date": "2026-09-27",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_54f36601-10ba-4a9e-a1bc-a3786682928e.html",
+   "start": "2026-09-29T17:30:00",
+   "topics": [
+    "Public hearing on 2027 budget",
+    "Reports from department heads and elected officials",
+    "Resolution to approve budget"
+   ],
+   "uid": "874b686f78f37c95"
+  },
+  {
+   "body": "Executive Committee",
+   "cancelled": false,
+   "jurisdiction": "Marinette County",
+   "location": "County Board Room No. 112, first floor, Courthouse, 1926 Hall Ave., Marinette",
+   "source_date": "2026-09-27",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_54f36601-10ba-4a9e-a1bc-a3786682928e.html",
+   "start": "2026-10-01T09:00:00",
+   "topics": [
+    "Closed session for final selection of county administrator candidates",
+    "Return to open session with possible action",
+    "Discuss broadcast of county board meetings"
+   ],
+   "uid": "b0c71836387d30b6"
+  },
+  {
+   "body": "Personnel Committee",
+   "cancelled": false,
+   "jurisdiction": "City of Peshtigo",
+   "location": "council chambers, Municipal Building, 331 French St",
+   "source_date": "2026-09-27",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_54f36601-10ba-4a9e-a1bc-a3786682928e.html",
+   "start": "2026-10-02T14:45:00",
+   "topics": [
+    "Closed session to interview for the Director of Public Works position",
+    "Return to open session with possible action"
+   ],
+   "uid": "a5003d5d365337b8"
   }
  ]
 }
