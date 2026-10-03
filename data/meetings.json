@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-29T18:14:25+00:00",
+ "generated_at": "2026-10-03T16:42:02+00:00",
  "meetings": [
   {
    "body": "Board of Supervisors",
@@ -452,6 +452,21 @@
     "Return to open session with possible action"
    ],
    "uid": "a5003d5d365337b8"
+  },
+  {
+   "body": "980 Committee",
+   "cancelled": false,
+   "jurisdiction": "Marinette County",
+   "location": "Judicial Conference Room (A103), first floor Judicial Center, 1926 Hall Ave., Marinette",
+   "source_date": "2026-10-02",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_e9c7b017-9d81-4159-837b-31222a140e0e.html",
+   "start": "2026-10-05T13:00:00",
+   "topics": [
+    "Discuss going into closed session to discuss placement of a 980 sex offender",
+    "Possible return to open session",
+    "Discuss report to be submitted to the Department of Health Services and the Court for appropriate residential option for community placement"
+   ],
+   "uid": "abf9a43e1b8653c0"
   }
  ]
 }
