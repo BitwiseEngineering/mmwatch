@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-10T17:27:46+00:00",
+ "generated_at": "2026-10-22T17:37:05+00:00",
  "meetings": [
   {
    "body": "Board of Supervisors",
@@ -531,6 +531,20 @@
     "051-031-970-20"
    ],
    "uid": "4f2fd21d241b9fb2"
+  },
+  {
+   "body": "Special Committee On UW-Campus Redevelopment Options",
+   "cancelled": false,
+   "jurisdiction": "Marinette County",
+   "location": "County Board Room No. 112, first floor, courthouse, 1926 Hall Ave., Marinette",
+   "source_date": "2026-10-20",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_9aa9a677-729c-46cb-aa53-ab74c8ee5191.html",
+   "start": "2026-10-22T12:00:00",
+   "topics": [
+    "Facilities Director\u2019s report, including Stephenson Public Library lease and decision on putting property out for lease",
+    "Final survey results"
+   ],
+   "uid": "378d9f206de4495e"
   }
  ]
 }
