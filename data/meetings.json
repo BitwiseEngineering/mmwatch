@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-22T17:37:05+00:00",
+ "generated_at": "2026-10-23T17:25:48+00:00",
  "meetings": [
   {
    "body": "Board of Supervisors",
@@ -545,6 +545,49 @@
     "Final survey results"
    ],
    "uid": "378d9f206de4495e"
+  },
+  {
+   "body": "Historic Preservation Commission",
+   "cancelled": false,
+   "jurisdiction": "City of Marinette",
+   "location": "council chambers, City Hall, 1905 Hall Ave",
+   "source_date": "2026-10-23",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_ee36b1b8-e8e7-4276-9386-3553db50d237.html",
+   "start": "2026-10-26T10:00:00",
+   "topics": [
+    "Meridian Plate monument Cemetery wall on Mary Street at Forest Home Cemetery",
+    "First Mill Site, Farnsworth Mill and Queen Marinette signs"
+   ],
+   "uid": "16d5c683031d7380"
+  },
+  {
+   "body": "Mental Health and Crisis Intervention",
+   "cancelled": false,
+   "jurisdiction": "Marinette County",
+   "location": "jury assembly room, lower level of the judicial center, 1926 Hall Ave., Marinette",
+   "source_date": "2026-10-23",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_ee36b1b8-e8e7-4276-9386-3553db50d237.html",
+   "start": "2026-10-26T12:00:00",
+   "topics": [
+    "Elect chair and vice chair",
+    "Establish Ad Hoc Committee on mental health crisis intervention"
+   ],
+   "uid": "f1e1c5707ffafcb9"
+  },
+  {
+   "body": "Local Emergency Planning Committee",
+   "cancelled": false,
+   "jurisdiction": "Marinette County",
+   "location": "multipurpose room, Marinette County Resource Center, 1925 Ella Court, Marinette",
+   "source_date": "2026-10-23",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_ee36b1b8-e8e7-4276-9386-3553db50d237.html",
+   "start": "2026-10-26T15:00:00",
+   "topics": [
+    "Emergency management report",
+    "Transition and appointment of representing members of Marinette County Sheriff\u2019s office",
+    "EPA presentation"
+   ],
+   "uid": "6d654f08fd753dee"
   }
  ]
 }
