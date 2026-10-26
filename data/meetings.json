@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-23T17:25:48+00:00",
+ "generated_at": "2026-10-26T18:51:12+00:00",
  "meetings": [
   {
    "body": "Board of Supervisors",
@@ -561,6 +561,19 @@
    "uid": "16d5c683031d7380"
   },
   {
+   "body": "Finance and Insurance Committee",
+   "cancelled": false,
+   "jurisdiction": "City of Marinette",
+   "location": "council chambers, City Hall, 1905 Hall Ave",
+   "source_date": "2026-10-25",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_dbcca8db-14f0-4091-9f61-420940bc4d6f.html",
+   "start": "2026-10-26T12:00:00",
+   "topics": [
+    "2027 budget"
+   ],
+   "uid": "b073169fdb387c5b"
+  },
+  {
    "body": "Mental Health and Crisis Intervention",
    "cancelled": false,
    "jurisdiction": "Marinette County",
@@ -588,6 +601,112 @@
     "EPA presentation"
    ],
    "uid": "6d654f08fd753dee"
+  },
+  {
+   "body": "Board of Education",
+   "cancelled": false,
+   "jurisdiction": "City of Marinette",
+   "location": "district office community room, district office, 2139 Pierce Ave",
+   "source_date": "2026-10-25",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_dbcca8db-14f0-4091-9f61-420940bc4d6f.html",
+   "start": "2026-10-26T17:30:00",
+   "topics": [
+    "2026-27 budget highlights"
+   ],
+   "uid": "0f1e795bb93053d6"
+  },
+  {
+   "body": "Board of Education",
+   "cancelled": false,
+   "jurisdiction": "City of Marinette",
+   "location": "district office community room, district office, 2139 Pierce Ave",
+   "source_date": "2026-10-25",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_dbcca8db-14f0-4091-9f61-420940bc4d6f.html",
+   "start": "2026-10-26T18:00:00",
+   "topics": [
+    "Final agreement on Garfield property",
+    "Tax levy",
+    "2026-27 budget",
+    "Superintendent\u2019s report"
+   ],
+   "uid": "b8447fd81e83a18c"
+  },
+  {
+   "body": "Executive Committee",
+   "cancelled": false,
+   "jurisdiction": "Marinette County",
+   "location": "Judicial Conference Room, J103, first floor, courthouse, 1926 Hall Ave., Marinette",
+   "source_date": "2026-10-25",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_dbcca8db-14f0-4091-9f61-420940bc4d6f.html",
+   "start": "2026-10-27T08:15:00",
+   "topics": [
+    "Recommend county board approve retired county administrator John Lefebvre to provide transitional training for new County Administrator Brian Chapman"
+   ],
+   "uid": "c81be575742b8d75"
+  },
+  {
+   "body": "Board of Supervisors",
+   "cancelled": false,
+   "jurisdiction": "Marinette County",
+   "location": "County Board Room No. 112, first floor, courthouse, 1926 Hall Ave., Marinette",
+   "source_date": "2026-10-25",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_dbcca8db-14f0-4091-9f61-420940bc4d6f.html",
+   "start": "2026-10-27T09:00:00",
+   "topics": [
+    "Public hearing on 2027 budget",
+    "Administrator\u2019s report",
+    "Resolution for a referendum to exceed the allowable levy limit on the April 6, 2027 ballot to fund county road construction projects",
+    "Approve retired county administrator John Lefebvre to provide transitional training for new County Administrator Brian Chapman"
+   ],
+   "uid": "ddc77bdddff932cb"
+  },
+  {
+   "body": "ADRC Governing Board",
+   "cancelled": false,
+   "jurisdiction": "Marinette County",
+   "location": "ADRC conference room, ADRC of Marinette County, 2500 Hall Ave., Marinette",
+   "source_date": "2026-10-25",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_dbcca8db-14f0-4091-9f61-420940bc4d6f.html",
+   "start": "2026-10-27T13:00:00",
+   "topics": [
+    "Election of chair and vice chair",
+    "ADRC Supervisor report"
+   ],
+   "uid": "3f78656ec3c05dc1"
+  },
+  {
+   "body": "Industrial Development Corporation",
+   "cancelled": false,
+   "jurisdiction": "Marinette County",
+   "location": "county board room, Courthouse, 1926 Hall Ave., Marinette",
+   "source_date": "2026-10-25",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_dbcca8db-14f0-4091-9f61-420940bc4d6f.html",
+   "start": "2026-10-27T13:00:00",
+   "topics": [
+    "NEWCAP update",
+    "Armstrong Creek Co. loan documents",
+    "Dissolution of revolving loan fund"
+   ],
+   "uid": "2808e9c5da1070cb"
+  },
+  {
+   "body": "Board of Commissioners",
+   "cancelled": false,
+   "jurisdiction": "Menominee County",
+   "location": "courtroom B, Courthouse, 839 10th Ave., Menominee",
+   "source_date": "2026-10-25",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_dbcca8db-14f0-4091-9f61-420940bc4d6f.html",
+   "start": "2026-10-27T17:30:00",
+   "topics": [
+    "Online at menomineecountygovernment.my.webex.com/meet/countyboard , meeting number 296 107 971",
+    "BY phone at 1-408-418-9388, access code 296107971",
+    "Department head and elected officials reports",
+    "Update emergency action guidelines",
+    "2027 MSU extension agreement",
+    "Audit service contract for fiscal years 2026-2028",
+    "2027 service agreements"
+   ],
+   "uid": "dd0e565c32fba308"
   }
  ]
 }
