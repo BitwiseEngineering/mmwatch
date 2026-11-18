@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-26T18:51:12+00:00",
+ "generated_at": "2026-11-18T20:52:45+00:00",
  "meetings": [
   {
    "body": "Board of Supervisors",
@@ -707,6 +707,53 @@
     "2027 service agreements"
    ],
    "uid": "dd0e565c32fba308"
+  },
+  {
+   "body": "City Council",
+   "cancelled": false,
+   "jurisdiction": "City of Menominee",
+   "location": "council chambers, City Hall, 2511 10th St",
+   "source_date": "2026-11-16",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_bffcca4f-f863-40f9-a2c3-e250c9ae133f.html",
+   "start": "2026-11-16T18:00:00",
+   "topics": [
+    "Fourth of July update from Jackie Nutter",
+    "Mayor Casey Hoffman\u2019s appointments",
+    "City Manager Brett Botbyl\u2019s report",
+    "Moyle/The Harbors discussion",
+    "MARINETTE SCHOOLS"
+   ],
+   "uid": "36808a18e36189f0"
+  },
+  {
+   "body": "Finance & Insurance Committee",
+   "cancelled": false,
+   "jurisdiction": "City of Marinette",
+   "location": "council chambers, City Hall, 1905 Hall Ave",
+   "source_date": "2026-11-16",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_bffcca4f-f863-40f9-a2c3-e250c9ae133f.html",
+   "start": "2026-11-17T16:00:00",
+   "topics": [
+    "Recommend council borrowing $475,000 for 2027 capital outlay",
+    "Tax increment budget changes for 2027"
+   ],
+   "uid": "599a1f8d8daed668"
+  },
+  {
+   "body": "Land Information Council",
+   "cancelled": false,
+   "jurisdiction": "Marinette County",
+   "location": "Mult-Purpose Room (R121), Resource Center, Marinette",
+   "source_date": "2026-11-16",
+   "source_url": "https://www.ehextra.com/records/public-meetings/article_bffcca4f-f863-40f9-a2c3-e250c9ae133f.html",
+   "start": "2026-11-19T13:30:00",
+   "topics": [
+    "Elect officersa",
+    "Reports on programs and activities",
+    "Grant application",
+    "Budget"
+   ],
+   "uid": "0c752c9be0469af6"
   }
  ]
 }
